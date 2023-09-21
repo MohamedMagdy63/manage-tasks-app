@@ -11,7 +11,6 @@
             if(DB::connection()->getPdo()){
                 echo "Sucessfully Connected to DB and DB name is ".DB::connection()->getDatabaseName();
             }
-        
         ?>
     </div>
 </body>

@@ -1,0 +1,68 @@
+body{
+    background-color: #4e73df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.box{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius:5px ;
+}
+.box h1{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.box .form-control{
+    position: relative;
+    margin: 20px 0 40px;
+    width: 300px;
+}
+.box .form-control input{
+    background-color: transparent;
+    border: 0;
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    color: #fff;
+    border-bottom: 2px solid white;
+    outline: none;
+}
+.box .form-control label{
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    pointer-events: none;
+}
+.box .form-control label span{
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 300;
+    min-width: 5px;
+    transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.box .form-control input:focus + label span ,
+.box .form-control input:valid + label span {
+    color: lightblue;
+    transform: translateY(-30px);
+}
+.box .loginBtn{
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: lightblue;
+    color: black;
+    font-size: 16px;
+}
+.box p{
+    color: #fff;
+}
+.box p a{
+    color: lightblue;
+}
