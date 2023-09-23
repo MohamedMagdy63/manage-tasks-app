@@ -13,43 +13,34 @@
     <section class="sign-in">
         <div class="container">
             <div class="nt-5">
-                @if($errors->any())
-                    <div class="col-12">
-                        @foreach($errors->all() as $errors)
-                            <div class="alert alert-danger">{{$errors}}</div>
-                        @endforeach
-                    </div>
-                @endif
-
-                @if(session()->has('error'))
-                    <div class="alert alert-danger">{{session('error')}}</div>
-                @endif
-
-                @if(session()->has('success'))
-                    <div class="alert alert-success">{{session('success')}}</div>
-                @endif
             </div>
             <div class="signin-content">
                 <div class="signin-image">
                     <figure><img src='{{asset("import/assets/img/signin-image.jpg")}}' alt="sing up image"></figure>
-                    <a href="#" class="signup-image-link">Create an account</a>
+                    <a href="signup" class="signup-image-link">Create an account</a>
                 </div>
 
                 <div class="signin-form">
                     <h2 class="form-title">Login</h2>
                     <form method="POST" action="{{route('login.post')}}" class="register-form" id="login-form">
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">{{Session::get('success')}}</div>
+                        @endif
+
+                        @if(Session::has('fail'))
+                            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        @endif
+
                         @csrf
                         <div class="form-group">
                             <label for="email"><i class="zmdi zmdi-email"></i></label>
                             <input type="text" name="email" id="email" placeholder="Your Email"/>
+                            <span class="text-danger">@error('email'){{$message}}@enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" name="password" id="password" placeholder="Password"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            <span class="text-danger">@error('password'){{$message}}@enderror</span>
                         </div>
                         <div class="form-group form-button">
                             <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>

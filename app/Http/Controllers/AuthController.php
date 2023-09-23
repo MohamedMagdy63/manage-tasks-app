@@ -27,7 +27,7 @@ class AuthController extends Controller
         if($user){
             if(Hash::check($request->password,$user->password)){
                 $request->session()->put('loginID',$user->user_id);
-                return redirect('dashboard');
+                return redirect('/');
             }else{
                 return back()->with('fail', 'Password not matches.');
             }
@@ -64,15 +64,16 @@ class AuthController extends Controller
         $user = User::create($data);
         if(!$user)
         {
-            return redirect(route('signup'))->with('error',"Registeration failed, please try again");
+            return redirect('signup')->with('error',"Registeration failed, please try again");
         }
-        return redirect(route('login'))->with('success',"Registeration success, Login to access to your tasks");
+        return redirect('login')->with('success',"Registeration success, Login to access to your tasks");
     }
     public function logout()
     {
-        Session::flush();
-        Auth::logout();
-        return redirect(route('login'));
+        if(Session::has('loginID')){
+            Session::pull('loginID');
+            return redirect('login');
+        }
     }
 
 }

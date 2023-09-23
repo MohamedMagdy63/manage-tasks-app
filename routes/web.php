@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TasksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,23 +13,27 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-Route::get('/dashboard', [AuthController::class,'dashboard']);
 
-Route::get('/login', [AuthController::class, 'login'])
--> name('login');
+Route::get('/', [AuthController::class,'dashboard'])->middleware('isLoggedIn');
+
+Route::get('/login', [AuthController::class, 'login'])->middleware('alreadyLoggedIn');
 
 Route::post('/login', [AuthController::class, 'loginPost'])
 -> name('login.post');
 
 
-Route::get('/signup',[AuthController::class, 'signup'])
--> name('signup'); 
+Route::get('/signup',[AuthController::class, 'signup'])->middleware('alreadyLoggedIn'); 
 
 Route::post('/signup', [AuthController::class, 'signupPost'])
 -> name('signup.post');
 
 
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/logout',[AuthController::class,'logout']);
+
+
+// ///////////////Tasks Routes/////////////
+Route::get('/addTask', [TasksController::class, 'addTask']);
+
+
+Route::post('/create-task', [TasksController::class, 'createTask'])->name('create.task');
+
