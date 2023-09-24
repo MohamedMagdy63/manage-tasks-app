@@ -94,9 +94,6 @@ class TasksController extends Controller
                     ->orWhere('description', 'LIKE', "%$searchQuery%");
                 })->get();
         }
-
         return view('searchResults', ['tasks' => $tasks, 'searchQuery' => $searchQuery]);
     }
-
-
 }
