@@ -46,18 +46,49 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[OP.GG](https://op.gg)**
 - **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
 - **[Lendio](https://lendio.com)**
+- 
+# manage-tasks-app
+Laravel simple manage tasks (Create, Read, Update and Delete) application using laravel inbuild authentication,with login and signup for user.And Super admin can manage all tasks . Here is a step by step guide to install it.
 
-## Contributing
+## Setup Guide
+Step 1: Clone this project
+```
+git clone https://github.com/ckpanchal/laravel-crud.git
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Step 2: Install project dependencies using composer.
+```
+composer install
+```
 
-## Code of Conduct
+Step 3: Copy .env.example file to .env file.
+```
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Step 4: Configure database credentials in .env file.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=manage_tasks
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Security Vulnerabilities
+Step 5: Run artisan migration command to migrate table.
+```
+php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Step 6: Run artisan serve command to start app server.
+```
+php artisan serve
+```
+
+Step 7: Open browser and navigate http://127.0.0.1:8000
+
+If everything works it will open welcome screen in browser
 
 ## License
 
