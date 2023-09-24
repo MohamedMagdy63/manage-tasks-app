@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -75,6 +76,8 @@ class AuthController extends Controller
             return redirect('login');
         }
     }
-
+    public function userTasks(){
+        return $this->hasMany(Task::class,'user_id');
+    }
 }
 ?>

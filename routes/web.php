@@ -34,6 +34,15 @@ Route::get('/logout',[AuthController::class,'logout']);
 // ///////////////Tasks Routes/////////////
 Route::get('/addTask', [TasksController::class, 'addTask']);
 
-
 Route::post('/create-task', [TasksController::class, 'createTask'])->name('create.task');
+
+Route::get('/allTasks', [TasksController::class, 'allTasks'])->name('allTasks');
+
+Route::delete('/allTasks/{task}', [TasksController::class, 'destroy'])->name('tasks.destroy');
+
+Route::get('/tasks/{task}/edit', [TasksController::class, 'edit'])->name('tasks.edit');
+
+Route::put('/tasks/{task}', [TasksController::class, 'update'])->name('tasks.update');
+
+Route::get('/tasks/search', [TasksController::class, 'search'])->name('tasks.search');
 

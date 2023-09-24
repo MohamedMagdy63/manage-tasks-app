@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', "Add New Task")
+@section('title', "Update Task")
 @section('content')
 <!doctype html>
 <html lang="en">
@@ -45,18 +45,21 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+
+            <!-- Divider -->
             <hr class="sidebar-divider">
-            <li class="nav-item active">
-                <a class="nav-link" href="allTasks">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>All Tasks</span>
-                </a>
-            </li>
-            <hr class="sidebar-divider">
+
             <li class="nav-item active">
                 <a class="nav-link" href="logout">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
                     <span>Logout</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item active">
+                <a class="nav-link" href="addTask">
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>Add a new task</span>
                 </a>
             </li>
             <hr class="sidebar-divider">
@@ -87,7 +90,7 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-md-6 text-center mb-5">
-							<h2 class="heading-section">ADD A NEW TASK</h2>
+							<h2 class="heading-section">Edit Your TASK</h2>
 						</div>
 					</div>
 					<div class="row justify-content-center">
@@ -96,26 +99,40 @@
 								<div class="row">
 									<div class="col-md-9 col-lg-7">
 										<div class="contact-wrap w-100 p-md-5 p-4">
-											<h3 class="mb-4">ADD YOUR TASK</h3>
-											<form method="POST" action="{{route('create.task')}}" id="contactForm" name="contactForm" class="contactForm">
+											<h3 class="mb-4">Edit Your TASK</h3>
+											<div id="form-message-warning" class="mb-4"></div> 
+                                                <div id="form-message-success" class="mb-4">
+                                                Your message was sent, thank you!
+                                                </div>
+											<form method="POST" action="/tasks/{{$task->task_id}}" id="contactForm" name="contactForm" class="contactForm">
 												@csrf
+                                                @method('PUT')
 												<div class="row">
 													<div class="col-md-6">
 														<div class="form-group">
 															<label class="label" for="title">TITLE</label>
-															<input type="text" class="form-control" name="title" id="title" placeholder="Title">
+															<input type="text" class="form-control" name="title" value="{{$task->title}}" id="title" placeholder="Title">
 														</div>
 													</div>
 													<div class="col-md-12">
 														<div class="form-group">
 															<label class="label">DESCRIPTION</label>
-															<textarea name="description" class="form-control" id="description" cols="30" rows="4" placeholder="Description"></textarea>
+															<textarea name="description" class="form-control" id="description" cols="30" rows="4" placeholder="Description">{{$task->description}}</textarea>
 														</div>
+													</div>
+                                                    <div class="col-md-12">
+                                                    <div class="form-check">
+                                                        <input type="radio" name="status" class="form-check-input" id="status-1" value="1" @if($task->status == 1) checked @endif>
+                                                        <label class="form-check-label" for="status-1">Done</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input type="radio" name="status" class="form-check-input" id="status-0" value="0" @if($task->status == 0) checked @endif>
+                                                        <label class="form-check-label" for="status-0">Not Done</label>
+                                                    </div>
 													</div>
 													<div class="col-md-12">
 														<div class="form-group">
-															<input type="submit" value="Add Task" class="btn btn-primary">
-															<div class="submitting"></div>
+                                                            <button type="submit" class="btn btn-primary">Save Changes</button>
 														</div>
 													</div>
 												</div>
