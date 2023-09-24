@@ -70,6 +70,7 @@ class TasksController extends Controller
         $task->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'data'=>now(),
             'status'=>$request->input('status'),
         ]);
 
@@ -78,11 +79,21 @@ class TasksController extends Controller
     public function search(Request $request)
     {
         $searchQuery = $request->input('search');
-
-        // Query tasks that match the search query in title or description
-        $tasks = Task::where('title', 'LIKE', "%$searchQuery%")
-                    ->orWhere('description', 'LIKE', "%$searchQuery%")
-                    ->get();
+        $user = User::where('user_id', '=', Session::get('loginID'))->first();
+        if ($user->rule == 1) {
+            // If rule is 1, search all tasks
+            $tasks = Task::where(function ($query) use ($searchQuery) {
+                $query->where('title', 'LIKE', "%$searchQuery%")
+                ->orWhere('description', 'LIKE', "%$searchQuery%");
+            })->get();
+        } else {
+            // If rule is 0, search only user's tasks
+            $tasks = Task::where('user_id', '=', $user->user_id)
+                ->where(function ($query) use ($searchQuery) {
+                    $query->where('title', 'LIKE', "%$searchQuery%")
+                    ->orWhere('description', 'LIKE', "%$searchQuery%");
+                })->get();
+        }
 
         return view('searchResults', ['tasks' => $tasks, 'searchQuery' => $searchQuery]);
     }

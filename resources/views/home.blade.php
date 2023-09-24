@@ -87,7 +87,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    {{$data->email}}
+                                    {{$data->first_name}} {{$data->last_name}} 
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     src='{{asset("import/assets/img/undraw_profile.svg")}}'>
