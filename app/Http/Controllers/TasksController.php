@@ -32,7 +32,7 @@ class TasksController extends Controller
            
         }
         Task::create($tasksData);
-        return redirect('/');
+        return redirect('allTasks');
     }
 
     public function allTasks()
@@ -74,7 +74,7 @@ class TasksController extends Controller
             'status'=>$request->input('status'),
         ]);
 
-        return redirect('/');
+        return redirect('allTasks');
     }
     public function search(Request $request)
     {
