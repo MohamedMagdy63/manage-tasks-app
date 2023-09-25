@@ -32,7 +32,7 @@ class TasksController extends Controller
            
         }
         Task::create($tasksData);
-        return redirect('allTasks');
+        return redirect('allTasks')->with('success', 'Task created successfully');
     }
 
     public function allTasks()
@@ -74,7 +74,7 @@ class TasksController extends Controller
             'status'=>$request->input('status'),
         ]);
 
-        return redirect('allTasks');
+        return redirect('allTasks')->with('success','Your task updated successfully');
     }
     public function search(Request $request)
     {
