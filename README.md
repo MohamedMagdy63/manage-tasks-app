@@ -13,7 +13,7 @@ Laravel simple manage tasks (Create, Read, Update and Delete) application using 
 ## Setup Guide
 Step 1: Clone this project
 ```
-git clone https://github.com/ckpanchal/laravel-crud.git
+git clone https://github.com/MohamedMagdy63/manage-tasks-app
 ```
 
 Step 2: Install project dependencies using composer.
